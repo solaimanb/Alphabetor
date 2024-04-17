@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 
 import { TitleForm } from "./_components/title-form";
 import { DescriptionForm } from "./_components/description-form";
+import { ImageForm } from "./_components/image-form";
 
 const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   const { userId } = auth();
@@ -23,6 +24,12 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   if (!course) {
     return redirect("/dashboard");
   }
+
+  const categories = await db.category.findMany({
+    orderBy: {
+      name: "asc",
+    },
+  });
 
   const requiredFields = [
     course.title,
@@ -61,6 +68,11 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
 
           <DescriptionForm
             initialData={{ description: course.description || "" }}
+            courseId={course.id}
+          />
+
+          <ImageForm
+            initialData={{ imageUrl: course.imageUrl || "" }}
             courseId={course.id}
           />
         </div>
