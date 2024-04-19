@@ -51,21 +51,6 @@ export const ChapterVideoForm = ({
     }
   };
 
-  // const onSubmit = async (values: z.infer<typeof formSchema>) => {
-  //   console.log(values);
-  //   try {
-  //     await axios.patch(
-  //       `/api/courses/${courseId}/chapters/${chapterId}`,
-  //       values
-  //     );
-  //     toast.success("Chapter updated!");
-  //     toggleEdit();
-  //     router.refresh();
-  //   } catch (error) {
-  //     toast.error("Something went wrong!");
-  //   }
-  // };
-
   return (
     <div className="mt-10 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
@@ -100,9 +85,6 @@ export const ChapterVideoForm = ({
               <MuxPlayer playbackId={initialData.muxData.playbackId} />
             </div>
           )
-          //   <div className="relative aspect-video mt-2">
-          //     <MuxPlayer playbackId={initialData?.muxData?.playbackId} />
-          //   </div>
         ))}
 
       {isEditing && (
@@ -115,6 +97,7 @@ export const ChapterVideoForm = ({
               }
             }}
           />
+
           <div className="text-xs text-muted-foreground mt-4">
             Upload this chapter&apos;s video.
           </div>
