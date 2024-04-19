@@ -3,7 +3,7 @@
 import { ConfirmModal } from "@/components/modals/confirm-modal";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
-import { Loader2, Trash, Trash2 } from "lucide-react";
+import { Loader2, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -72,16 +72,22 @@ export const ChapterActions = ({
         variant="outline"
         size="sm"
       >
-        {isPublished ? "Unpublish" : "Publish"}
+        {isPublished ? (
+          <>
+            {isLoading ? (
+              <Loader2 className="w-4 h-4 text-green-600 animate-spin transition" />
+            ) : (
+              "Unpublish"
+            )}
+          </>
+        ) : (
+          "Publish"
+        )}
       </Button>
 
       <ConfirmModal onConfirm={onDelete}>
         <Button size="sm" disabled={isLoading}>
-          {isLoading ? (
-            <Loader2 className="w-4 h-4 text-red-600 animate-spin transition" />
-          ) : (
-            <Trash2 className="w-4 h-4 text-red-400" />
-          )}
+          <Trash2 className="w-4 h-4 text-red-400" />
         </Button>
       </ConfirmModal>
     </div>

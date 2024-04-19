@@ -32,7 +32,7 @@ export const ChapterVideoForm = ({
   const toggleEdit = () => setIsEditing((current: any) => !current);
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+    console.log("Submitting form with values:", values);
     try {
       const response = await axios.patch(
         `/api/courses/${courseId}/chapters/${chapterId}`,
@@ -45,7 +45,8 @@ export const ChapterVideoForm = ({
       } else {
         throw new Error("Server responded with non-OK status");
       }
-    } catch (error) {
+    } catch (error: any) {
+      console.log("Error uploading chapter video:", error.message || error);
       toast.error("Something went wrong!");
     }
   };
