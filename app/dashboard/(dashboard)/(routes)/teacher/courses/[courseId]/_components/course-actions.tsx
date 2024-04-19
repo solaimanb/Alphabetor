@@ -35,6 +35,8 @@ export const CourseActions = ({
         await axios.patch(`/api/courses/${courseId}/publish`);
         toast.success("Course published!");
         confetti.onOpen();
+
+        router.push(`/dashboard/teacher/courses`);
       }
 
       router.refresh();
