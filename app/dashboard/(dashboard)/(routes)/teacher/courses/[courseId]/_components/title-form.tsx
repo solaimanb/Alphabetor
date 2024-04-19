@@ -50,7 +50,7 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
   const { isSubmitting, isValid } = form.formState;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+    console.log("Submitted form values", values);
     try {
       await axios.patch(`/api/courses/${courseId}`, values);
       toast.success("Course updated!");
@@ -92,6 +92,7 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
                 <FormItem>
                   <FormControl>
                     <Input
+                      {...field}
                       disabled={isSubmitting}
                       placeholder="e.g., 'Machine Learning'"
                     />
@@ -102,11 +103,7 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
             />
 
             <div className="flex items-center gap-x-2">
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                // disabled={!isValid || isSubmitting}
-              >
+              <Button type="submit" disabled={isSubmitting}>
                 Save
               </Button>
             </div>

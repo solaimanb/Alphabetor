@@ -16,6 +16,8 @@ import { CategoryForm } from "./_components/category-form";
 import { PriceForm } from "./_components/price-form";
 import { AttachmentForm } from "./_components/attachment-form";
 import { ChaptersForm } from "./_components/chapters-form";
+import { Banner } from "@/components/shared/banner";
+import { CourseActions } from "./_components/course-actions";
 
 const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   const { userId } = auth();
@@ -58,7 +60,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
     course.description,
     course.imageUrl,
     course.price,
-    course.categoryId,
+    // course.categoryId,
     course.chapters.some((chapter) => chapter.isPublished),
   ];
 
@@ -67,89 +69,104 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
 
   const completionText = `${completedFields}/${totalFields}`;
 
-  return (
-    <div className="p-6">
-      <div className="flex items-center justify-between">
-        <div className="flex flex-col gap-y-2">
-          <h1 className="text-2xl font-medium">Course Setup</h1>
-          <span className="text-sm text-slate-700">
-            Complete all fields ({completionText})
-          </span>
-        </div>
-      </div>
+  const isComplete = requiredFields.every(Boolean);
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
-        <div>
-          <div className="flex items-center gap-x-2">
-            <IconBadge icon={LayoutDashboard} />
-            <h2 className="text-xl font-semibold text-slate-700">
-              Customize your course
-            </h2>
+  return (
+    <>
+      {!course.isPublished && (
+        <Banner label="This course is unpublished, it will not be visible to the students!" />
+      )}
+
+      <div className="p-6">
+        <div className="flex items-center justify-between">
+          <div className="flex flex-col gap-y-2">
+            <h1 className="text-2xl font-medium">Course Setup</h1>
+            <span className="text-sm text-slate-700">
+              Complete all fields ({completionText})
+            </span>
           </div>
 
-          <TitleForm initialData={course} courseId={course.id} />
-
-          <DescriptionForm
-            initialData={{ description: course.description || "" }}
+          {/* Course Actions: Publish/UnPublish/Delete */}
+          <CourseActions
+            disabled={!isComplete}
             courseId={course.id}
-          />
-
-          <ImageForm
-            initialData={{ imageUrl: course.imageUrl || "" }}
-            courseId={course.id}
-          />
-
-          <CategoryForm
-            initialData={{ categoryId: course.categoryId || "" }}
-            courseId={course.id}
-            options={categories.map((category) => ({
-              label: category.name,
-              value: category.id,
-            }))}
+            isPublished={course.isPublished}
           />
         </div>
 
-        <div className="space-y-6">
-          {/* Course Chapters Field */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
           <div>
             <div className="flex items-center gap-x-2">
-              <IconBadge icon={ListChecks} />
-              <h1 className="text-xl font-semibold text-slate-700">
-                {" "}
-                Course Chapters
-              </h1>
-            </div>
-
-            <ChaptersForm initialData={course} courseId={course.id} />
-          </div>
-
-          {/* Course Price Field */}
-          <>
-            <div className="flex items-center gap-x-2">
-              <IconBadge icon={CircleDollarSign} />
+              <IconBadge icon={LayoutDashboard} />
               <h2 className="text-xl font-semibold text-slate-700">
-                Sell your course
+                Customize your course
               </h2>
             </div>
 
-            <PriceForm initialData={course} courseId={course.id} />
-          </>
+            <TitleForm initialData={course} courseId={course.id} />
 
-          {/* Course Attachments Field */}
-          <>
-            <div className="flex items-center gap-x-2">
-              <IconBadge icon={File} />
-              Resources & Attachments
-            </div>
-
-            <AttachmentForm
-              initialData={{ ...course, attachment: course.attachments }}
+            <DescriptionForm
+              initialData={{ description: course.description || "" }}
               courseId={course.id}
             />
-          </>
+
+            <ImageForm
+              initialData={{ imageUrl: course.imageUrl || "" }}
+              courseId={course.id}
+            />
+
+            <CategoryForm
+              initialData={{ categoryId: course.categoryId || "" }}
+              courseId={course.id}
+              options={categories.map((category) => ({
+                label: category.name,
+                value: category.id,
+              }))}
+            />
+          </div>
+
+          <div className="space-y-6">
+            {/* Course Chapters Field */}
+            <div>
+              <div className="flex items-center gap-x-2">
+                <IconBadge icon={ListChecks} />
+                <h1 className="text-xl font-semibold text-slate-700">
+                  {" "}
+                  Course Chapters
+                </h1>
+              </div>
+
+              <ChaptersForm initialData={course} courseId={course.id} />
+            </div>
+
+            {/* Course Price Field */}
+            <>
+              <div className="flex items-center gap-x-2">
+                <IconBadge icon={CircleDollarSign} />
+                <h2 className="text-xl font-semibold text-slate-700">
+                  Sell your course
+                </h2>
+              </div>
+
+              <PriceForm initialData={course} courseId={course.id} />
+            </>
+
+            {/* Course Attachments Field */}
+            <>
+              <div className="flex items-center gap-x-2">
+                <IconBadge icon={File} />
+                Resources & Attachments
+              </div>
+
+              <AttachmentForm
+                initialData={{ ...course, attachment: course.attachments }}
+                courseId={course.id}
+              />
+            </>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
