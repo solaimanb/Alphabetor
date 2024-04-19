@@ -1,6 +1,7 @@
-import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
+
+import { db } from "@/lib/db";
 
 export async function PATCH(
   req: Request,
@@ -41,10 +42,10 @@ export async function PATCH(
       !chapter ||
       !muxData ||
       !chapter.title ||
-      !chapter.description ||
-      !chapter.videoUrl
+      !chapter.description
+      // || !chapter.videoUrl
     ) {
-      return new NextResponse("Missing required fields!", { status: 404 });
+      return new NextResponse("Missing required fields!", { status: 400 });
     }
 
     const publishedChapter = await db.chapter.update({
