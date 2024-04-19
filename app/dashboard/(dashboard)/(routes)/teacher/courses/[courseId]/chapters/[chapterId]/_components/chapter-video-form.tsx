@@ -34,17 +34,36 @@ export const ChapterVideoForm = ({
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     console.log(values);
     try {
-      await axios.patch(
+      const response = await axios.patch(
         `/api/courses/${courseId}/chapters/${chapterId}`,
         values
       );
-      toast.success("Chapter updated!");
-      toggleEdit();
-      router.refresh();
+      if (response.status === 200) {
+        toast.success("Chapter updated!");
+        toggleEdit();
+        router.refresh();
+      } else {
+        throw new Error("Server responded with non-OK status");
+      }
     } catch (error) {
       toast.error("Something went wrong!");
     }
   };
+
+  // const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  //   console.log(values);
+  //   try {
+  //     await axios.patch(
+  //       `/api/courses/${courseId}/chapters/${chapterId}`,
+  //       values
+  //     );
+  //     toast.success("Chapter updated!");
+  //     toggleEdit();
+  //     router.refresh();
+  //   } catch (error) {
+  //     toast.error("Something went wrong!");
+  //   }
+  // };
 
   return (
     <div className="mt-10 border bg-slate-100 rounded-md p-4">

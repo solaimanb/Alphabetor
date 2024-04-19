@@ -5,8 +5,8 @@ import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 
 const { Video } = new (Mux as any)(
-  process.env.MUX_TOKEN_ID!,
-  process.env.MUX_TOKEN_SECRET!
+  process.env.NEXT_PUBLIC_MUX_TOKEN_ID,
+  process.env.NEXT_PUBLIC_MUX_TOKEN_SECRET
 );
 
 export async function DELETE(
@@ -14,7 +14,7 @@ export async function DELETE(
   { params }: { params: { courseId: string; chapterId: string } }
 ) {
   try {
-    const { userId } = auth();
+    const { userId } = await auth();
 
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
@@ -50,7 +50,7 @@ export async function DELETE(
       });
 
       if (existingMuxData) {
-        await Video.Assets.det(existingMuxData.assetId);
+        await Video.Assets.del(existingMuxData.assetId);
         await db.muxData.delete({
           where: {
             id: existingMuxData.id,
@@ -82,6 +82,11 @@ export async function DELETE(
         },
       });
     }
+    return new NextResponse(JSON.stringify(deletedChapter), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+    // return NextResponse.json(deletedChapter);
   } catch (error) {
     console.log("[CHAPTERS]", error);
     return new NextResponse("Internal Error", { status: 500 });
@@ -92,8 +97,9 @@ export async function PATCH(
   req: Request,
   { params }: { params: { courseId: string; chapterId: string } }
 ) {
+  console.log("[PATCH]", params);
   try {
-    const { userId } = auth();
+    const { userId } = await auth();
     console.log(userId);
 
     const { isPublished, ...values } = await req.json();
