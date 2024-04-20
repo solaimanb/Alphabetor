@@ -7,9 +7,9 @@ import { CourseSidebar } from "./course-sidebar";
 
 interface CourseMobileSidebarProps {
   course: Course & {
-    chapters: Chapter & {
+    chapters: (Chapter & {
       userProgress: UserProgress[] | null;
-    };
+    })[];
   };
   progressCount: number;
 }
@@ -25,10 +25,7 @@ export const CourseMobileSidebar = ({
       </SheetTrigger>
 
       <SheetContent side={"left"} className="p-0 bg-white w-72">
-        <CourseSidebar
-          course={{ ...course, chapters: [course.chapters] }}
-          progressCount={progressCount}
-        />
+        <CourseSidebar course={course} progressCount={progressCount} />
       </SheetContent>
     </Sheet>
   );

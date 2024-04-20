@@ -5,7 +5,7 @@ type CourseWithProgressWithCategory = {
   id: string;
   title: string;
   imageUrl: string;
-  price: number;
+  price: number | null;
   category: Category | null;
   chapters: { id: string }[];
   progress: number | null;
@@ -24,7 +24,7 @@ export const CoursesList = ({ items }: CoursesListProps) => {
             key={item.id}
             id={item.id}
             title={item.title}
-            imageUrl={item.imageUrl!}
+            imageUrl={item.imageUrl}
             chaptersLength={item.chapters.length}
             price={item.price!}
             chapters={item.chapters}

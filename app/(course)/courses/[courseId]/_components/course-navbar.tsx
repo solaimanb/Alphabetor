@@ -4,9 +4,9 @@ import { CourseMobileSidebar } from "./course-mobile-sidebar";
 
 interface CourseNavbarProps {
   course: Course & {
-    chapters: Chapter & {
+    chapters: (Chapter & {
       userProgress: UserProgress[] | null;
-    };
+    })[];
   };
   progressCount: number;
 }
