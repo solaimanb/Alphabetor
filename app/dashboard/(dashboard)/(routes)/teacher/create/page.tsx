@@ -85,7 +85,7 @@ const CreatePage = () => {
           />
 
           <div>
-            <Link href={"/dashboard"} className="">
+            <Link href={"/dashboard/teacher/courses"}>
               <Button type="button" variant={"ghost"}>
                 Cancel
               </Button>
