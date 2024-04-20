@@ -4,6 +4,10 @@ import { redirect } from "next/navigation";
 import { getChapter } from "@/actions/get-chapter";
 import { Banner } from "@/components/shared/banner";
 import VideoPlayer from "./_components/video-player";
+import { CourseEnrollButton } from "./_components/course-enroll-button";
+import { Separator } from "@/components/ui/separator";
+import { Preview } from "@/components/shared/preview";
+import { File } from "lucide-react";
 
 const ChapterIdPage = async ({
   params,
@@ -61,6 +65,48 @@ const ChapterIdPage = async ({
             isLocked={isLocked}
             completeOnEnd={completeOnEnd}
           />
+        </div>
+
+        <div>
+          <div className="p-4 flex flex-col md:flex-row items-center justify-between gap-y-2">
+            <h2 className="text-2xl font-bold">{chapter.title}</h2>
+
+            {purchase ? (
+              // TODO: Add CourseProgress component
+              <div></div>
+            ) : (
+              <CourseEnrollButton
+                courseId={params.courseId}
+                price={course.price!}
+              />
+            )}
+          </div>
+
+          <Separator />
+
+          <div>
+            <Preview value={chapter.description || ""} />
+          </div>
+
+          {!!attachments.length && (
+            <>
+              <Separator />
+
+              <div className="p-4">
+                {attachments.map((attachment) => (
+                  <a
+                    href={attachment.url}
+                    target="_blank"
+                    key={attachment.id}
+                    className="flex items-center p-2 w-full bg-gray-100 rounded-md border hover:underline"
+                  >
+                    <File className="h-4 w-4 mr-2" />
+                    <p className="line-clamp-1 text-sm">{attachment.name}</p>
+                  </a>
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>
