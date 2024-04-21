@@ -4,52 +4,42 @@ const database = new PrismaClient();
 
 async function main() {
   try {
-    const categories = [
-      { name: "Computer Science" },
-      { name: "Engineering" },
-      { name: "Medicine" },
-      { name: "Mathematics" },
-      { name: "Physics" },
-      { name: "Chemistry" },
-      { name: "Biology" },
-      { name: "History" },
-      { name: "Geography" },
-      { name: "Economics" },
-      { name: "English" },
-      { name: "Fitness" },
-      { name: "Music" },
-      { name: "Art" },
-      { name: "Dance" },
-      { name: "Cooking" },
-      { name: "Photography" },
-      { name: "Gardening" },
-      { name: "Crafts" },
-      { name: "Business" },
-      { name: "Psychology" },
-      { name: "Philosophy" },
-      { name: "Languages" },
-      { name: "Design" },
-      { name: "Marketing" },
-      { name: "Finance" },
-      { name: "Law" },
-      { name: "Other" },
-    ];
+    await database.category.createMany({
+      data: [
+        { name: "Computer Science" },
+        { name: "Engineering" },
+        { name: "Business" },
+        { name: "History" },
+        { name: "Geography" },
+        { name: "Economics" },
+        { name: "Music" },
+        { name: "Art" },
+        { name: "Photography" },
+        { name: "Languages" },
+        { name: "Design" },
+        { name: "Marketing" },
+        { name: "Law" },
+        { name: "Other" },
+      ],
+    });
 
-    for (const category of categories) {
-      const existingCategory = await database.category.findUnique({
-        where: {
-          name: category.name,
-        },
-      });
+    console.log("Success seeding categories!");
 
-      if (!existingCategory) {
-        await database.category.create({
-          data: category,
-        });
-      }
-    }
+    // for (const category of categories) {
+    //   const existingCategory = await database.category.findUnique({
+    //     where: {
+    //       name: category.name,
+    //     },
+    //   });
+
+    //   if (!existingCategory) {
+    //     await database.category.create({
+    //       data: category,
+    //     });
+    //   }
+    // }
   } catch (error) {
-    console.log("Error while seeding the database. Error: ", error);
+    console.log("Error while seeding the database categories:", error);
   } finally {
     await database.$disconnect();
   }

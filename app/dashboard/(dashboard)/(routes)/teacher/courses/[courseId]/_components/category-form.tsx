@@ -18,11 +18,10 @@ import { Pencil } from "lucide-react";
 import { Combobox } from "@/components/ui/combobox";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import { Course } from "@prisma/client";
 
 interface CategoryFormProps {
-  initialData: {
-    categoryId: string;
-  };
+  initialData: Course;
   courseId: string;
   options: { label: string; value: string }[];
 }
@@ -39,12 +38,14 @@ export const CategoryForm = ({
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
 
-  const toggleEdit = () => setIsEditing((current: any) => !current);
+  const toggleEdit = () => {
+    setIsEditing((current) => !current);
+  };
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      categoryId: initialData.categoryId,
+      categoryId: initialData?.categoryId || "",
     },
   });
 
@@ -63,21 +64,27 @@ export const CategoryForm = ({
   };
 
   // Select Category Option:
-  const selectedCategory = options.find(
+  console.log("Before selecting categories:", options);
+
+  console.log("Initial Data Category ID From [CATEGORY_FORM]:", initialData);
+
+  const selectedOption = options.find(
     (option) => option.value === initialData.categoryId
   );
+
+  console.log("After Selecting Category:", selectedOption);
 
   return (
     <div className="mt-10 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Course Category
+        Course category
         <Button onClick={toggleEdit} variant={"ghost"} size={"sm"}>
           {isEditing ? (
             <span className="text-destructive">Cancel</span>
           ) : (
             <>
               <Pencil className="w-4 h-4 mr-2" />
-              Edit Category
+              Edit category
             </>
           )}
         </Button>
@@ -90,7 +97,7 @@ export const CategoryForm = ({
             !initialData.categoryId && "text-slate-500 italic"
           )}
         >
-          {selectedCategory?.label || "No Category"}
+          {selectedOption?.label || "No Category"}
         </p>
       )}
 
@@ -106,13 +113,16 @@ export const CategoryForm = ({
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Combobox options={options} {...field} />
+                    <Combobox
+                      options={options}
+                      value={field.value}
+                      onChange={field.onChange}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-
             <div className="flex items-center gap-x-2">
               <Button type="submit" disabled={isSubmitting}>
                 Save

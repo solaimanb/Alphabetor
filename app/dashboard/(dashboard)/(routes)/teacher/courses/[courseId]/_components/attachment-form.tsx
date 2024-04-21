@@ -11,7 +11,7 @@ import { FileUpload } from "@/components/shared/file-upload";
 import { Attachment, Course } from "@prisma/client";
 
 interface AttachmentFormProps {
-  initialData: Course & { attachment: Attachment[] };
+  initialData: Course & { attachments: Attachment[] };
   courseId: string;
 }
 
@@ -32,8 +32,8 @@ export const AttachmentForm = ({
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     console.log(values);
     try {
-      await axios.patch(`/api/courses/${courseId}/attachments`, values);
-      toast.success("Course Image updated!");
+      await axios.post(`/api/courses/${courseId}/attachments`, values);
+      toast.success("Course Attachments updated!");
       toggleEdit();
       router.refresh();
     } catch (error) {
@@ -72,14 +72,15 @@ export const AttachmentForm = ({
 
       {!isEditing && (
         <>
-          {initialData.attachment.length === 0 && (
+          {initialData.attachments.length === 0 && (
             <p className="text-sm mt-2 text-slate-500 italic">
               No attachments added yet.
             </p>
           )}
-          {initialData.attachment.length > 0 && (
-            <div>
-              {initialData.attachment.map((attachment) => (
+
+          {initialData.attachments.length > 0 && (
+            <div className="space-y-2">
+              {initialData.attachments.map((attachment) => (
                 <div
                   key={attachment.id}
                   className="flex items-center gap-2 mt-2 p-2 w-full bg-slate-200 text-sky-800 rounded-md font-[500]"
