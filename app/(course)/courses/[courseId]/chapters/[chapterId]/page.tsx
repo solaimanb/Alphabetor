@@ -97,14 +97,14 @@ const ChapterIdPage = async ({
           </div>
 
           <div className="space-y-2 p-4">
-            {attachments.length && (
+            {attachments.length > 0 ? (
               <div className="flex items-center">
                 <IconBadge size="sm" icon={File} />
                 <h2 className="ml-2 text-lg font-semibold text-slate-800 underline">
                   Course Attachments:
                 </h2>
               </div>
-            )}
+            ) : null}
 
             {attachments.map((attachment) => (
               <a
@@ -119,11 +119,11 @@ const ChapterIdPage = async ({
             ))}
           </div>
 
-          {!!attachments.length && (
+          {/* {!!attachments.length && (
             <>
               <Separator />
 
-              {/* <div className="p-4">
+              <div className="p-4">
                 {attachments.map((attachment) => (
                   <a
                     href={attachment.url}
@@ -135,9 +135,9 @@ const ChapterIdPage = async ({
                     <p className="line-clamp-1 text-sm">{attachment.name}</p>
                   </a>
                 ))}
-              </div> */}
+              </div>
             </>
-          )}
+          )} */}
         </div>
       </div>
     </div>
