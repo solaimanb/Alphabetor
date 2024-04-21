@@ -42,7 +42,6 @@ const ChapterIdPage = async ({
   const completeOnEnd = !!purchase && !userProgress?.isCompleted;
 
   console.log("Attachments:", attachments);
-  console.log("Purchase status:", purchase);
 
   return (
     <div className="p-4">
