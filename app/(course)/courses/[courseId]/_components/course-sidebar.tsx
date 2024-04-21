@@ -4,6 +4,9 @@ import { Chapter, Course, UserProgress } from "@prisma/client";
 import { redirect } from "next/navigation";
 import { CourseSidebarItem } from "./course-sidebar-item";
 import { CourseProgress } from "@/components/shared/course-progress";
+import { ArrowLeftIcon, ChevronLeft } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
+import BackTo from "./back-to";
 
 interface CourseSidebarProps {
   course: Course & {
@@ -36,7 +39,13 @@ export const CourseSidebar = async ({
   return (
     <div className="h-full border-r flex flex-col overflow-auto shadow-sm bg-white">
       <div className="p-6 flex flex-col border-b">
-        <h1 className="font-semibold">{course.title}</h1>
+        <div className="flex items-center gap-x-2">
+          <BackTo />
+
+          <Separator orientation="vertical" />
+
+          <h1 className="font-semibold">{course.title}</h1>
+        </div>
 
         {purchase && (
           <div className="mt-10">
