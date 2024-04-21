@@ -17,7 +17,7 @@ export const getChapter = async ({
       where: {
         userId_courseId: {
           userId,
-          courseId,
+          courseId: courseId,
         },
       },
     });
@@ -47,7 +47,7 @@ export const getChapter = async ({
     let attachments: Attachment[] = [];
     let nextChapter: Chapter | null = null;
 
-    if (!purchase) {
+    if (purchase) {
       attachments = await db.attachment.findMany({
         where: {
           courseId: courseId,
@@ -101,7 +101,7 @@ export const getChapter = async ({
       chapter: null,
       course: null,
       muxData: null,
-      attachments: null,
+      attachments: [],
       nextChapter: null,
       userProgress: null,
       purchase: null,

@@ -1,8 +1,9 @@
-import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
-export async function PATCH(
+import { db } from "@/lib/db";
+
+export async function POST(
   req: Request,
   { params }: { params: { courseId: string } }
 ) {
@@ -32,9 +33,10 @@ export async function PATCH(
         courseId: params.courseId,
       },
     });
+
     return NextResponse.json(attachment);
   } catch (error) {
     console.log("[COURSE_ID_ATTACHMENTS]", error);
-    return new NextResponse("Internal Server Error", { status: 500 });
+    return new NextResponse("Internal Error", { status: 500 });
   }
 }

@@ -1,5 +1,4 @@
 import { IconBadge } from "@/components/shared/icon-badge";
-import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
 import {
   CircleDollarSign,
@@ -18,6 +17,8 @@ import { AttachmentForm } from "./_components/attachment-form";
 import { ChaptersForm } from "./_components/chapters-form";
 import { Banner } from "@/components/shared/banner";
 import { CourseActions } from "./_components/course-actions";
+
+import { db } from "@/lib/db";
 
 const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   const { userId } = auth();
@@ -54,6 +55,8 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
       name: "asc",
     },
   });
+
+  console.log("CATEGORIES_FROM_COURSE_ID_PAGE: ", categories);
 
   const requiredFields = [
     course.title,
@@ -116,7 +119,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
             />
 
             <CategoryForm
-              initialData={{ categoryId: course.categoryId || "" }}
+              initialData={course}
               courseId={course.id}
               options={categories.map((category) => ({
                 label: category.name,
@@ -158,10 +161,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
                 Resources & Attachments
               </div>
 
-              <AttachmentForm
-                initialData={{ ...course, attachment: course.attachments }}
-                courseId={course.id}
-              />
+              <AttachmentForm initialData={course} courseId={course.id} />
             </>
           </div>
         </div>
