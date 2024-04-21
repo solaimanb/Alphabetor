@@ -41,6 +41,9 @@ const ChapterIdPage = async ({
   const isLocked = !chapter.isFree && !purchase;
   const completeOnEnd = !!purchase && !userProgress?.isCompleted;
 
+  console.log("Attachments:", attachments);
+  console.log("Purchase status:", purchase);
+
   return (
     <div className="p-4">
       {userProgress?.isCompleted && (
@@ -86,6 +89,20 @@ const ChapterIdPage = async ({
 
           <div>
             <Preview value={chapter.description || ""} />
+          </div>
+
+          <div>
+            {attachments.map((attachment) => (
+              <a
+                href={attachment.url}
+                target="_blank"
+                key={attachment.id}
+                className="flex items-center p-2 w-full bg-gray-100 rounded-md border hover:underline"
+              >
+                <File className="h-4 w-4 mr-2" />
+                <p className="line-clamp-1 text-sm">{attachment.name}</p>
+              </a>
+            ))}
           </div>
 
           {!!attachments.length && (
