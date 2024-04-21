@@ -30,7 +30,7 @@ model Course {
   userId      String
   title       String
   description String?
-  imageUrl    String
+  imageUrl    String?
   price       Float?
   isPublished Boolean @default(false)
 
@@ -61,7 +61,7 @@ model Attachment {
   name     String
   url      String
   courseId String?
-  course   Course? @relation(fields: [courseId], references: [id])
+  course   Course? @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

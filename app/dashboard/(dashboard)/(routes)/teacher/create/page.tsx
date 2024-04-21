@@ -17,8 +17,7 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { title } from "process";
-import { fields } from "@hookform/resolvers/ajv/src/__tests__/__fixtures__/data.js";
+
 import Link from "next/link";
 import toast from "react-hot-toast";
 
@@ -42,7 +41,9 @@ const CreatePage = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       const response = await axios.post("/api/courses", values);
+
       router.push(`/dashboard/teacher/courses/${response.data.id}`);
+
       toast.success("Course created!");
     } catch (error) {
       toast.error("Something went wrong!");
@@ -51,52 +52,54 @@ const CreatePage = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <h1 className="text-2xl font-semibold">Name your course</h1>
-      <p className="text-sm text-slate-600">
-        Give your course a name that will help learners understand what the
-        course is about. You can change the name at any time.
-      </p>
+    <div className="max-w-4xl mx-auto flex md:items-center md:justify-center h-full p-4">
+      <div className="">
+        <h1 className="text-2xl font-semibold">Name your course</h1>
+        <p className="text-sm text-slate-600">
+          Give your course a name that will help learners understand what the
+          course is about. You can change the name at any time.
+        </p>
 
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-4 mt-10"
-        >
-          <FormField
-            control={form.control}
-            name="title"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Course Title</FormLabel>
-                <FormControl>
-                  <Input
-                    disabled={isSubmitting}
-                    placeholder="e.g., 'Advanced Web Development'"
-                    {...field}
-                  />
-                </FormControl>
-                <FormDescription>
-                  What will you teach in this course?
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-4 mt-10"
+          >
+            <FormField
+              control={form.control}
+              name="title"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Course Title</FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={isSubmitting}
+                      placeholder="e.g., 'Advanced Web Development'"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormDescription>
+                    What will you teach in this course?
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          <div>
-            <Link href={"/dashboard/teacher/courses"}>
-              <Button type="button" variant={"ghost"}>
-                Cancel
+            <div>
+              <Link href={"/dashboard/teacher/courses"}>
+                <Button type="button" variant={"ghost"}>
+                  Cancel
+                </Button>
+              </Link>
+
+              <Button type="submit" disabled={!isValid || isSubmitting}>
+                Continue
               </Button>
-            </Link>
-
-            <Button type="submit" disabled={!isValid || isSubmitting}>
-              Continue
-            </Button>
-          </div>
-        </form>
-      </Form>
+            </div>
+          </form>
+        </Form>
+      </div>
     </div>
   );
 };
