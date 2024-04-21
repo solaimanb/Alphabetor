@@ -3,12 +3,12 @@ import Stripe from "stripe";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
-import { stripe } from "@/lib/stripe";
 import { db } from "@/lib/db";
+import { stripe } from "@/lib/stripe";
 
 export async function POST(req: Request) {
   const body = await req.text();
-  const signature = headers().get("stripe-signature") as string;
+  const signature = headers().get("Stripe-Signature") as string;
 
   let event: Stripe.Event;
 
@@ -19,6 +19,7 @@ export async function POST(req: Request) {
       process.env.STRIPE_WEBHOOK_SECRET!
     );
   } catch (error) {
+    console.error("Error constructing Stripe webhook event:", error);
     return new NextResponse("Webhook error", { status: 400 });
   }
 
