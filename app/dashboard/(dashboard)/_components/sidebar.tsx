@@ -3,13 +3,20 @@ import {
   BookOpen,
   HomeIcon,
   InfoIcon,
+  LogOut,
   Mail,
   SchoolIcon,
 } from "lucide-react";
 import SidebarRoutes from "./sidebar-routes";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
-import { UserButton, auth } from "@clerk/nextjs";
+import {
+  SignOutButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+  auth,
+} from "@clerk/nextjs";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -27,28 +34,29 @@ const Sidebar = () => {
 
   return (
     <div className="h-full md:border-r flex flex-col overflow-y-auto bg-white shadow-sm">
-      <Link href={"/"} className="p-4 flex items-center gap-1 text-brand">
-        <BookOpen />
-        <h1 className="text-xl uppercase font-bold">Alphabetor</h1>
+      <Link href={"/"} className="p-4 flex items-center gap-1 text-brand w-fit">
+        <h2 className="font-bold italic text-xl md:text-3xl uppercase">
+          Alphabetor
+        </h2>
       </Link>
 
       <Separator />
+      <SignedIn>
+        <SidebarRoutes />
+        <button
+          type="button"
+          className={cn(
+            "flex items-center gap-x-1 text-brand font-[500] transition-all w-full"
+          )}
+        >
+          <div className="flex items-center gap-x-2 py-3 border-black w-full pl-4">
+            <LogOut />
+            <SignOutButton />
+          </div>
+        </button>
+      </SignedIn>
 
-      {userId ? (
-        <div className="flex flex-row-reverse items-center justify-between border gap-x-2 py-2 px-4">
-          <Link href={"/dashboard"} className="md:ml-auto">
-            <Button
-              variant="brandOutline"
-              type="button"
-              size={"sm"}
-              className="font-bold text-white"
-            >
-              Dashboard
-            </Button>
-          </Link>
-          <UserButton afterSignOutUrl="/" />
-        </div>
-      ) : (
+      <SignedOut>
         <div className="flex items-center px-4 py-2 gap-x-2">
           <Link href={"/sign-in"}>
             <Button
@@ -67,9 +75,9 @@ const Sidebar = () => {
             </Button>
           </Link>
         </div>
-      )}
+      </SignedOut>
 
-      {!userId && (
+      <SignedOut>
         <nav className="relative w-full justify-center flex flex-col list-none gap-x-4 xl:gap-x-6">
           {navLinks.map((link, index) => (
             <>
@@ -90,13 +98,11 @@ const Sidebar = () => {
             </>
           ))}
         </nav>
-      )}
-
-      {userId && <SidebarRoutes />}
+      </SignedOut>
 
       <div className="mt-auto">
         <Separator />
-        <p className="text-xs text-slate-800 p-2">
+        <p className="text-xs text-slate-800 py-2 px-4">
           &copy; {new Date().getFullYear()} Alphabetor. All rights reserved.
         </p>
       </div>

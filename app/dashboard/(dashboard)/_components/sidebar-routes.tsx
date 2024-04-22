@@ -6,9 +6,12 @@ import {
   Layout,
   LayoutList,
   List,
+  LogOut,
 } from "lucide-react";
 import { SidebarItem } from "./sidebar-item";
 import { usePathname } from "next/navigation";
+import { Separator } from "@/components/ui/separator";
+import { SignOutButton, useClerk } from "@clerk/nextjs";
 
 const guestRoutes = [
   {
@@ -37,6 +40,8 @@ const teacherRoutes = [
 ];
 
 const SidebarRoutes = () => {
+  const { signOut } = useClerk();
+
   const pathname = usePathname();
   const isTeacherPage = pathname?.includes("/teacher");
 
@@ -45,12 +50,15 @@ const SidebarRoutes = () => {
   return (
     <div className="flex flex-col">
       {routes.map((route) => (
-        <SidebarItem
-          key={route?.path}
-          icon={route?.icon}
-          label={route?.label}
-          path={route?.path}
-        />
+        <>
+          <SidebarItem
+            key={route?.path}
+            icon={route?.icon}
+            label={route?.label}
+            path={route?.path}
+          />
+          <Separator />
+        </>
       ))}
     </div>
   );
