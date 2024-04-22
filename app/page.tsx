@@ -8,7 +8,9 @@ const Home = () => {
     <>
       <Header />
       <Hero />
-      <Sponsors />
+      {/*
+     <Sponsors />
+     */}
 
       <Footer />
     </>
