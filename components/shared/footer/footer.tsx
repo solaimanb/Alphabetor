@@ -69,7 +69,7 @@ const Footer = () => {
               {quickLinks?.map((link) => (
                 <li key={link.id} className="mb-2 text-sm">
                   <Link
-                    href={link.link}
+                    href={link.link.toString()}
                     className="text-gray-300 hover:text-white"
                   >
                     {link.text}
@@ -86,7 +86,7 @@ const Footer = () => {
               {socialLinks?.map((link) => (
                 <li key={link?.id} className="mb-2 text-sm">
                   <Link
-                    href={link?.url}
+                    href={link?.url.toString()}
                     className="text-gray-300 hover:text-white"
                     target="_blank"
                     rel="noopener noreferrer"
