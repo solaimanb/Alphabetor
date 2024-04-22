@@ -17,17 +17,8 @@ interface HomeProps {
 const Home = async ({ searchParams }: HomeProps) => {
   return (
     <>
-      <Link href={"/dashboard"} className="ml-auto">
-        <Button
-          variant="brandOutline"
-          type="button"
-          size={"sm"}
-          className="font-bold"
-        >
-          Dashboard
-        </Button>
-      </Link>
-      {/* <Header />
+      <Header />
+      {/*
       <Hero />
       <Sponsors />
       <Counter />
