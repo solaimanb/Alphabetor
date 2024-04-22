@@ -56,6 +56,7 @@ const config = {
         },
         // Alphabetor colors:
         brand: "#164B59",
+        brandDark: "#12424f",
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -1,0 +1,12 @@
+#marquee {
+  position: relative;
+}
+
+#marquee::after {
+  background: url("https://demoxml.com/html/wooland/images/gridtile.png") repeat;
+  content: "";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
