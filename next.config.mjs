@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   images: {
     domains: [
@@ -15,6 +16,7 @@ const nextConfig = {
       "i1.ytimg.com",
       "i.ytimg.com",
       "yt3.ggpht",
+      "prod-discovery.edx-cdn.org",
     ],
   },
 };
