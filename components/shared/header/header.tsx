@@ -3,6 +3,7 @@ import React from "react";
 import Marquee from "./marquee";
 import HeaderContact from "./header-contact";
 import NavigationBar from "./navigation-bar";
+import MobileSidebar from "@/app/dashboard/(dashboard)/_components/mobile-sidebar";
 
 const Header = () => {
   return (

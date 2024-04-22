@@ -7,6 +7,7 @@ interface SidebarItemProps {
   icon: LucideIcon;
   label: string;
   path: string;
+  children?: React.ReactNode;
 }
 
 export const SidebarItem = ({ icon: Icon, label, path }: SidebarItemProps) => {
