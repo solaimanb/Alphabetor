@@ -72,7 +72,6 @@ const Sponsors = () => {
         {sponsorsList?.map((sponsor, index) => (
           <SwiperSlide key={index} className="full">
             <Image
-              key={index}
               src={sponsor?.imgUrl}
               alt=""
               className="w-20 h-10 md:w-28 md:h-14 mx-auto"
