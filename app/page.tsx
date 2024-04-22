@@ -1,15 +1,17 @@
-import Link from "next/link";
+import Header from "@/components/shared/header/header";
+import Hero from "./_components/hero";
+import Sponsors from "./_components/sponsors";
+import Footer from "@/components/shared/footer/footer";
 
 const Home = () => {
   return (
-    <div>
-      Home Page
-      <Link href={"/dashboard"} className="ml-auto">
-        <button type="button" className="bg-black text-white p-2 rounded">
-          Dashboard
-        </button>
-      </Link>
-    </div>
+    <>
+      <Header />
+      <Hero />
+      <Sponsors />
+
+      <Footer />
+    </>
   );
 };
 

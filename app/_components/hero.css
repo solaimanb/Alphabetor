@@ -1,0 +1,36 @@
+/* ------Swiper Customization------ */
+.swiper-pagination {
+  margin-top: 100px;
+}
+
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background-color: #ffffff;
+  transition: all 0.4s ease;
+}
+
+.swiper-pagination-bullet-active {
+  width: 10px;
+  height: 10px;
+  background-color: #164b59;
+}
+
+/* Responsive Media Screens */
+@media only screen and (min-width: 768px) {
+  #hero {
+    background: url("https://images.unsplash.com/photo-1528980917907-8df7f48f6f2a?auto=format&w=1920&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+      no-repeat;
+    position: relative;
+  }
+
+  #hero::after {
+    background: url("https://demoxml.com/html/wooland/images/gridtile.png")
+      repeat;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    width: 100%;
+  }
+}
