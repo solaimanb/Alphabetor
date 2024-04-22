@@ -21,7 +21,7 @@ const buttonVariants = cva(
         success: "bg-emerald-600 text-white hover:bg-emerald-600/80",
         brand: "bg-brand text-white hover:bg-brand/90",
         brandOutline:
-          "border border-white bg-brand hover:bg-brandDark transition-all hover:shadow-sm",
+          "border border-white bg-brand hover:bg-brandDark/80 transition-all hover:shadow-sm hover:border-brandDark/80",
       },
       size: {
         default: "h-10 px-4 py-2",
