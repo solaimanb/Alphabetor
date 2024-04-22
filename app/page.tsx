@@ -4,6 +4,8 @@ import Sponsors from "./_components/sponsors";
 import Footer from "@/components/shared/footer/footer";
 import Newsletter from "./_components/newsletter";
 import Counter from "./_components/countup";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 interface HomeProps {
   searchParams: {
@@ -15,6 +17,16 @@ interface HomeProps {
 const Home = async ({ searchParams }: HomeProps) => {
   return (
     <>
+      <Link href={"/dashboard"} className="ml-auto">
+        <Button
+          variant="brandOutline"
+          type="button"
+          size={"sm"}
+          className="font-bold"
+        >
+          Dashboard
+        </Button>
+      </Link>
       {/* <Header />
       <Hero />
       <Sponsors />
