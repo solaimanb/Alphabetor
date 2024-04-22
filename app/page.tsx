@@ -18,13 +18,11 @@ const Home = async ({ searchParams }: HomeProps) => {
   return (
     <>
       <Header />
-      {/*
       <Hero />
       <Sponsors />
       <Counter />
       <Newsletter />
       <Footer />
-      */}
     </>
   );
 };
