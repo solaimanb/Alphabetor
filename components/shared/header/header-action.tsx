@@ -7,7 +7,7 @@ const HeaderAction = () => {
   const { userId } = auth();
 
   return (
-    <div className="flex items-center justify-between">
+    <div className="hidden md:flex items-center justify-between">
       {userId ? (
         <div className="flex items-center gap-x-2">
           <Link href={"/dashboard"} className="ml-auto">
