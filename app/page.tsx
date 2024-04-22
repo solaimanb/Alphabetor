@@ -15,12 +15,13 @@ interface HomeProps {
 const Home = async ({ searchParams }: HomeProps) => {
   return (
     <>
-      <Header />
+      {/* <Header />
       <Hero />
       <Sponsors />
       <Counter />
       <Newsletter />
       <Footer />
+      */}
     </>
   );
 };
