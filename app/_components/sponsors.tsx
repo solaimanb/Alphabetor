@@ -1,14 +1,8 @@
 "use client";
-
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-import SwiperCore from "swiper";
 import "swiper/css";
-import "swiper/css/navigation";
-import { Navigation, Pagination } from "swiper/modules";
+
 import Image from "next/image";
-SwiperCore.use([Navigation, Pagination]);
 
 const breakpoints = {
   320: {
@@ -63,24 +57,26 @@ const Sponsors = () => {
 
   return (
     <div className="py-5 bg-gray-50 items-center">
-      <Swiper
-        loop={true}
-        spaceBetween={2}
-        breakpoints={breakpoints}
-        className="container mx-auto flex flex-row h-full"
-      >
-        {sponsorsList?.map((sponsor, index) => (
-          <SwiperSlide key={index} className="full">
-            <Image
-              src={sponsor?.imgUrl}
-              alt=""
-              className="w-20 h-10 md:w-28 md:h-14 mx-auto"
-              width={500}
-              height={500}
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      {typeof window !== "undefined" && (
+        <Swiper
+          loop={true}
+          spaceBetween={2}
+          breakpoints={breakpoints}
+          className="container mx-auto flex flex-row h-full"
+        >
+          {sponsorsList?.map((sponsor, index) => (
+            <SwiperSlide key={index}>
+              <Image
+                src={sponsor?.imgUrl}
+                alt={`Sponsor ${index + 1}`}
+                className="w-20 h-10 md:w-28 md:h-14 mx-auto"
+                width={500}
+                height={500}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
     </div>
   );
 };
