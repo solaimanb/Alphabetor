@@ -1,17 +1,9 @@
 "use client";
-import {
-  BarChart,
-  BarChart3,
-  Compass,
-  Layout,
-  LayoutList,
-  List,
-  LogOut,
-} from "lucide-react";
+import { BarChart3, Compass, Layout, LayoutList } from "lucide-react";
 import { SidebarItem } from "./sidebar-item";
 import { usePathname } from "next/navigation";
 import { Separator } from "@/components/ui/separator";
-import { SignOutButton, useClerk } from "@clerk/nextjs";
+import { useClerk } from "@clerk/nextjs";
 
 const guestRoutes = [
   {

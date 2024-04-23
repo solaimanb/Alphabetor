@@ -1,6 +1,5 @@
 import {
   BookIcon,
-  BookOpen,
   HomeIcon,
   InfoIcon,
   LogOut,
@@ -10,13 +9,7 @@ import {
 import SidebarRoutes from "./sidebar-routes";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
-import {
-  SignOutButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-  auth,
-} from "@clerk/nextjs";
+import { SignOutButton, SignedIn, SignedOut, auth } from "@clerk/nextjs";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";

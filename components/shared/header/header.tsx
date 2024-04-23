@@ -5,9 +5,8 @@ import NavigationBar from "./navigation-bar";
 const Header = () => {
   return (
     <header className="flex flex-col">
-      {/*
       <Marquee />
-      */}
+
       <NavigationBar />
     </header>
   );
