@@ -9,6 +9,7 @@ export default authMiddleware({
     "/about",
     "/contact",
   ],
+  ignoredRoutes: ["/((?!api|trpc))(_next.*|.+.[w]+$)", "/bookshop"],
 });
 
 export const config = {
