@@ -4,23 +4,16 @@ import Sponsors from "./_components/sponsors";
 import Footer from "@/components/shared/footer/footer";
 import Newsletter from "./_components/newsletter";
 import Counter from "./_components/countup";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import Testimonial from "./_components/testimonial";
 
-interface HomeProps {
-  searchParams: {
-    categoryId: string;
-    title: string;
-  };
-}
-
-const Home = async ({ searchParams }: HomeProps) => {
+const Home = () => {
   return (
     <>
       <Header />
       <Hero />
       <Sponsors />
       <Counter />
+      {/* <Testimonial /> */}
       <Newsletter />
       <Footer />
     </>
