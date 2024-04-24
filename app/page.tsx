@@ -5,14 +5,25 @@ import Footer from "@/components/shared/footer/footer";
 import Newsletter from "./_components/newsletter";
 import Counter from "./_components/countup";
 import Testimonial from "./_components/testimonial";
+import { getCourses } from "@/actions/get-courses";
+import { CoursesList } from "@/components/shared/courses-list";
 
-const Home = () => {
+const Home = async () => {
+  const courses = await getCourses({});
+
   return (
     <>
       <Header />
       <Hero />
-      {/* <Sponsors /> */}
+      <Sponsors />
       <Counter />
+      <div className="container mt-10">
+        <h2 className="text-center text-brand text-3xl font-bold">
+          Featured Courses
+        </h2>
+
+        <CoursesList items={courses} />
+      </div>
       {/* <Testimonial /> */}
       <Newsletter />
       <Footer />

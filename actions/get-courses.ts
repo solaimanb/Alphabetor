@@ -9,7 +9,7 @@ type CourseWithProgressWithCategory = Course & {
 };
 
 type GetCourses = {
-  userId: string;
+  userId?: string;
   title?: string;
   categoryId?: string;
 };
@@ -38,27 +38,42 @@ export const getCourses = async ({
             id: true,
           },
         },
-        purchases: {
-          where: {
-            userId,
-          },
-        },
+        purchases: userId
+          ? {
+              where: {
+                userId: userId,
+              },
+            }
+          : undefined,
       },
       orderBy: {
         createdAt: "desc",
       },
     });
 
+    // const coursesWithProgress = await Promise.all(
+    //   courses.map(async (course) => {
+    //     if (course.purchases.length === 0) {
+    //       return {
+    //         ...course,
+    //         progress: null,
+    //       };
+    //     }
+
+    //     const progressPercentage = await getProgress(userId, course.id);
+
+    //     return {
+    //       ...course,
+    //       progress: progressPercentage,
+    //     };
+    //   })
+    // );
+
     const coursesWithProgress = await Promise.all(
       courses.map(async (course) => {
-        if (course.purchases.length === 0) {
-          return {
-            ...course,
-            progress: null,
-          };
-        }
-
-        const progressPercentage = await getProgress(userId, course.id);
+        const progressPercentage = userId
+          ? await getProgress(userId, course.id)
+          : null;
 
         return {
           ...course,
