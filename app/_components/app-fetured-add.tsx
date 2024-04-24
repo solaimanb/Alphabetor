@@ -34,8 +34,14 @@ const AppFeaturedAd = () => {
         </div>
       </div>
 
-      <div className="scale-125">
-        <Image src={Ad} alt="" width={500} height={500} className="scale-150" />
+      <div className="scale-110 md:scale-125">
+        <Image
+          src={Ad}
+          alt=""
+          width={600}
+          height={600}
+          className="scale-110 md:scale-150"
+        />
       </div>
     </div>
   );
