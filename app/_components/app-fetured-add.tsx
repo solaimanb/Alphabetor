@@ -6,12 +6,12 @@ import Google from "@/public/google-play-badge-en.webp";
 
 const AppFeaturedAd = () => {
   return (
-    <div className="container bg-brandDark my-20 px-10 py-10 md:px-20 rounded-lg text-white flex flex-row items-center justify-between">
+    <div className="container bg-brandDark my-20 px-10 py-5 md:px-20 rounded-lg text-white flex flex-col md:flex-row items-center justify-between gap-y-20 md:gap-y-0">
       <div className="h-full flex flex-col justify-between gap-y-10">
         <div>
-          <h2 className="text-3xl xl:text-4xl font-bold w-60 xl:w-80">
+          <h2 className="text-center md:text-start text-3xl xl:text-4xl font-bold w-60 xl:w-80">
             Download Alphabetor Mobile App &{" "}
-            <span className="">Keep Learning</span> Ease
+            <span className="">Make Learning</span> Ease
           </h2>
         </div>
 

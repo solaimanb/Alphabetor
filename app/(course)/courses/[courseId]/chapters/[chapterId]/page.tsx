@@ -10,6 +10,7 @@ import { Preview } from "@/components/shared/preview";
 import { File } from "lucide-react";
 import { IconBadge } from "@/components/shared/icon-badge";
 import { CourseProgressButton } from "./_components/course-progress-button";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const ChapterIdPage = async ({
   params,
@@ -59,7 +60,9 @@ const ChapterIdPage = async ({
       )}
 
       <div className="flex flex-col max-w-4xl mx-auto pb-20">
-        <div className="p-4">
+        <div className="relative rounded-md">
+          <Skeleton className="absolute w-full h-full rounded-xl" />
+
           <VideoPlayer
             chapterId={params.chapterId}
             title={chapter.title}
