@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils";
 
 export type Course = {
   id: string;
-  userId: string;
+  userId: string | null;
   title: string;
   description: string | null;
   imageUrl: string | null;
