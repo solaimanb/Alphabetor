@@ -3,8 +3,8 @@ import { ArrowRight, Lock } from "lucide-react";
 
 const Newsletter = () => {
   return (
-    <section className="bg-brand/20 py-10 md:py-20 mt-10 px-5">
-      <div className="container mx-auto flex flex-col md:flex-row md:justify-around gap-6 md:gap-10 items-center text-center md:text-start">
+    <section className="bg-brand/20 py-5 md:py-14 mt-10 px-5">
+      <div className="container mx-auto flex flex-col md:flex-row md:justify-between gap-6 md:gap-10 items-center text-center md:text-start">
         <div className="space-y-2">
           <span className="text-sm font-semibold rounded px-2 bg-yellow-100">
             Newsletter
