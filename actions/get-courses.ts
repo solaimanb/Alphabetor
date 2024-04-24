@@ -9,7 +9,7 @@ type CourseWithProgressWithCategory = Course & {
 };
 
 type GetCourses = {
-  userId?: string;
+  userId?: string | null;
   title?: string;
   categoryId?: string;
 };
