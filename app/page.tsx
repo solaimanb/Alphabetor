@@ -7,6 +7,7 @@ import Counter from "./_components/countup";
 import Testimonial from "./_components/testimonial";
 import { getCourses } from "@/actions/get-courses";
 import { CoursesList } from "@/components/shared/courses-list";
+import AppFeaturedAd from "./_components/app-fetured-add";
 
 const Home = async () => {
   const courses = await getCourses({});
@@ -24,6 +25,8 @@ const Home = async () => {
 
         <CoursesList items={courses} />
       </div>
+
+      <AppFeaturedAd />
       {/* <Testimonial /> */}
       <Newsletter />
       <Footer />
