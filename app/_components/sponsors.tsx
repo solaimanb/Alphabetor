@@ -58,7 +58,7 @@ const Sponsors = () => {
   return (
     <div className="py-5 bg-gray-50 items-center">
       {typeof window !== "undefined" && (
-        <div className="container mx-auto flex flex-row h-full">
+        <div className="container mx-auto flex flex-row h-full overflow-auto">
           {sponsorsList?.map((sponsor, index) => (
             <Image
               key={index}
