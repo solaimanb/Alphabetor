@@ -23,12 +23,10 @@ const navLinks = [
 ];
 
 const Sidebar = () => {
-  const { userId } = auth();
-
   return (
     <div className="h-full md:border-r flex flex-col overflow-y-auto bg-white shadow-sm">
       <Link href={"/"} className="p-4 flex items-center gap-1 text-brand w-fit">
-        <h2 className="font-bold italic text-xl md:text-3xl uppercase">
+        <h2 className="font-bold italic text-xl md:text-2xl uppercase">
           Alphabetor
         </h2>
       </Link>

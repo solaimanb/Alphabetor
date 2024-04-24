@@ -1,11 +1,16 @@
 "use client";
-import { BarChart3, Compass, Layout, LayoutList } from "lucide-react";
+import { BarChart3, Compass, HomeIcon, Layout, LayoutList } from "lucide-react";
 import { SidebarItem } from "./sidebar-item";
 import { usePathname } from "next/navigation";
 import { Separator } from "@/components/ui/separator";
 import { useClerk } from "@clerk/nextjs";
 
 const guestRoutes = [
+  {
+    icon: HomeIcon,
+    label: "Home",
+    path: "/",
+  },
   {
     icon: Layout,
     label: "Dashboard",
@@ -19,6 +24,11 @@ const guestRoutes = [
 ];
 
 const teacherRoutes = [
+  {
+    icon: HomeIcon,
+    label: "Home",
+    path: "/",
+  },
   {
     icon: LayoutList,
     label: "Courses",
