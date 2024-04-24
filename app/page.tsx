@@ -18,7 +18,7 @@ const Home = async () => {
       <Hero />
       <Sponsors />
       <Counter />
-      <div className="container mt-10">
+      <div className="container mt-10 px-0">
         <h2 className="text-center text-brand text-3xl font-bold">
           Featured Courses
         </h2>
