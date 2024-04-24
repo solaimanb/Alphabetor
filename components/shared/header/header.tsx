@@ -1,5 +1,5 @@
 import React from "react";
-// import MarqueeSlide from "./marquee";
+import MarqueeSlide from "./marquee";
 import NavigationBar from "./navigation-bar";
 
 const Header = () => {

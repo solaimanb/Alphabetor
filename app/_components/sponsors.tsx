@@ -58,24 +58,37 @@ const Sponsors = () => {
   return (
     <div className="py-5 bg-gray-50 items-center">
       {typeof window !== "undefined" && (
-        <Swiper
-          loop={true}
-          spaceBetween={2}
-          breakpoints={breakpoints}
-          className="container mx-auto flex flex-row h-full"
-        >
+        <div className="container mx-auto flex flex-row h-full">
           {sponsorsList?.map((sponsor, index) => (
-            <SwiperSlide key={index}>
-              <Image
-                src={sponsor?.imgUrl}
-                alt={`Sponsor ${index + 1}`}
-                className="w-20 h-10 md:w-28 md:h-14 mx-auto"
-                width={500}
-                height={500}
-              />
-            </SwiperSlide>
+            <Image
+              key={index}
+              src={sponsor?.imgUrl}
+              alt={`Sponsor ${index + 1}`}
+              className="w-20 h-10 md:w-28 md:h-14 mx-auto"
+              width={500}
+              height={500}
+            />
           ))}
-        </Swiper>
+        </div>
+
+        // <Swiper
+        //   loop={true}
+        //   spaceBetween={2}
+        //   breakpoints={breakpoints}
+        //   className="container mx-auto flex flex-row h-full"
+        // >
+        //   {sponsorsList?.map((sponsor, index) => (
+        //     <SwiperSlide key={index}>
+        //       <Image
+        //         src={sponsor?.imgUrl}
+        //         alt={`Sponsor ${index + 1}`}
+        //         className="w-20 h-10 md:w-28 md:h-14 mx-auto"
+        //         width={500}
+        //         height={500}
+        //       />
+        //     </SwiperSlide>
+        //   ))}
+        // </Swiper>
       )}
     </div>
   );

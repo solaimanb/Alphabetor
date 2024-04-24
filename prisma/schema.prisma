@@ -27,12 +27,13 @@ model User {
 
 model Course {
   id          String  @id @default(uuid()) @map("_id")
-  userId      String
+  userId      String?
   title       String
   description String?
   imageUrl    String?
   price       Float?
   isPublished Boolean @default(false)
+  isFeatured  Boolean @default(false)
 
   categoryId String?
   category   Category? @relation(fields: [categoryId], references: [id])
