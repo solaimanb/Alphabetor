@@ -27,7 +27,6 @@ const Home = async () => {
       </div>
 
       <AppFeaturedAd />
-      {/* <Testimonial /> */}
       <Newsletter />
       <Footer />
     </>
